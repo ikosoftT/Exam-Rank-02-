@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   repeat_alpha.c                                     :+:      :+:    :+:   */
+/*   sort_int_tab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yikoubaz <yikoubaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 08:20:22 by yikoubaz          #+#    #+#             */
-/*   Updated: 2026/04/13 04:58:30 by yikoubaz         ###   ########.fr       */
+/*   Created: 2026/04/15 04:28:13 by yikoubaz          #+#    #+#             */
+/*   Updated: 2026/04/15 04:34:47 by yikoubaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+// Again No Ai used here.
 
-void ft_putchar(char c, int i)
+void ft_swap(int *a, int *b)
 {
-    while ((i--) >= 0)
-        write(1, &c, 1);
+    int t = *a;
+    *a = *b;
+    *b = t;
 }
 
-void re(char *s)
+void ft_sort_int_tab(int *tab, unsigned int size)
 {
     int i = 0;
-    char c;
-    while (s[i])
+    int j;
+
+    while (i <  size)
     {
-        c = s[i];
-        if (c >= 'a' && c <= 'z')
-            ft_putchar(c, c - 'a');
-        else if (c >= 'A' && c <= 'Z')
-            ft_putchar(c, c - 'A');
-        else
-            ft_putchar(c, 0);
+        j = i + 1;
+        while(j < size)
+        {
+            if (tab[i] > tab[j])
+                ft_swap(&tab[i], &tab[j]);
+            j++;
+        }
         i++;
     }
-}
-
-int main(int ac, char **av)
-{
-    if (ac == 2)
-        re(av[1]);
-    ft_putchar('\n', 0);
 }

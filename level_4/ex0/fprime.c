@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   repeat_alpha.c                                     :+:      :+:    :+:   */
+/*   fprime.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yikoubaz <yikoubaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 08:20:22 by yikoubaz          #+#    #+#             */
-/*   Updated: 2026/04/13 04:58:30 by yikoubaz         ###   ########.fr       */
+/*   Created: 2026/04/15 02:43:18 by yikoubaz          #+#    #+#             */
+/*   Updated: 2026/04/15 02:46:18 by yikoubaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-void ft_putchar(char c, int i)
+void fprime(int nb)
 {
-    while ((i--) >= 0)
-        write(1, &c, 1);
-}
-
-void re(char *s)
-{
-    int i = 0;
-    char c;
-    while (s[i])
+    if (nb <= 0)
+        return;
+    if (nb == 1)
+        printf("1");
+    int div = 1;
+    while (nb > div++)
     {
-        c = s[i];
-        if (c >= 'a' && c <= 'z')
-            ft_putchar(c, c - 'a');
-        else if (c >= 'A' && c <= 'Z')
-            ft_putchar(c, c - 'A');
-        else
-            ft_putchar(c, 0);
-        i++;
+        if (nb % div == 0)
+        {
+            printf("%d", div);
+            if (nb == div)
+                break;
+            printf("*");
+            nb /= div;
+            div = 1;
+        }
     }
 }
 
 int main(int ac, char **av)
 {
     if (ac == 2)
-        re(av[1]);
-    ft_putchar('\n', 0);
+        fprime(atoi(av[1]));
+    printf("\n");       
 }
